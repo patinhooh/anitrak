@@ -27,8 +27,6 @@ func SaveToken(token *models.Token) error {
 	if err := encoder.Encode(token); err != nil {
 		return fmt.Errorf("failed to write token data: %v", err)
 	}
-
-	fmt.Println("Token saved successfully!")
 	return nil
 }
 

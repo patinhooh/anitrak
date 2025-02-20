@@ -36,7 +36,7 @@ func StartRedirectListener() (string, error) {
 	})
 
 	// Start the server
-	fmt.Println("Listening on http://localhost:8080 for the redirect...")
+	// fmt.Println("Listening on http://localhost:8080 for the redirect...")
 	err := server.ListenAndServe()
 	if err != nil && err != http.ErrServerClosed {
 		return "", fmt.Errorf("failed to start HTTP server: %v", err)
@@ -68,7 +68,7 @@ func ExchangeCodeForToken(code string) error {
 
 	// Debug: Read and log the response body
 	body, _ := io.ReadAll(resp.Body)
-	fmt.Printf("Raw response body: %s\n", string(body))
+	// fmt.Printf("Raw response body: %s\n", string(body))
 
 	// Parse the response
 	var tokenData models.TokenData

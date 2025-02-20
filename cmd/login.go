@@ -23,7 +23,6 @@ var loginCmd = &cobra.Command{
 			return
 		}
 
-		fmt.Printf("Authorization code received: %s\n", code)
 		// Exchange the authorization code for an token
 		err = api.ExchangeCodeForToken(code)
 		if err != nil {
