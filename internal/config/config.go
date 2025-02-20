@@ -10,7 +10,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// var AniListAPI string
+var AnilistGraphql string
 var AniListClientId string
 var AniListClientSecret string
 var AniListRedirectURI string
@@ -25,11 +25,11 @@ func InitConfig() {
 		log.Fatalf("Error loading .env file")
 	}
 
-	// // Anilist Api
-	// AniListAPI = os.Getenv("ANILIST_API")
-	// if AniListAPI == "" {
-	// 	log.Fatalf("ANILIST_API is not set in the .env file")
-	// }
+	// Anilist Api
+	AnilistGraphql = os.Getenv("ANILIST_GRAPHQL")
+	if AnilistGraphql == "" {
+		log.Fatalf("ANILIST_GRAPHQL is not set in the .env file")
+	}
 
 	AniListClientId = os.Getenv("ANILIST_CLIENT_ID")
 	if AniListClientId == "" {
