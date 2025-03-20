@@ -7,7 +7,7 @@ import (
 	"github.com/machinebox/graphql"
 )
 
-func Test(graphqlURL string, query string, variables map[string]any, response any) error {
+func ExecuteGraphQLQuery(graphqlURL string, query string, variables map[string]any, response any) error {
 	// create a client (safe to share across requests)
 	client := graphql.NewClient(graphqlURL)
 	req := graphql.NewRequest(query)

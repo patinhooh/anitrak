@@ -2,40 +2,24 @@ package main
 
 import (
 	"fmt"
+	"os"
 
-	"github.com/patinhooh/anitrak/internal/api"
+	"github.com/patinhooh/anitrak/cmd"
 	"github.com/patinhooh/anitrak/internal/config"
 )
 
-var cfg *config.Config
-
-type Response struct {
-	User struct {
-		Name string `json:"name"`
-	} `json:"User"`
-}
-
 func main() {
-	var err error
-	cfg, err = config.InitConfig()
+	// Load config once
+	cfg, err := config.InitConfig()
 	if err != nil {
-		fmt.Println("Warning: Using default config due to error:", err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
+	cmd.SetConfig(cfg)
 
-	var response Response
-	api.Test(
-		cfg.GraphqlURL,
-		`
-		query($userId: Int)  {
-			User(id: $userId) {
-				name
-			}
-		}`,
-		map[string]interface{}{
-			"userId": 1,
-		},
-		&response,
-	)
-
-	fmt.Printf("User Name: %s\n", response.User.Name)
+	// Execute Cobra CLI
+	if err := cmd.Execute(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
 }
